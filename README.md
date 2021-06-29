@@ -1,1 +1,1 @@
-# Just repo for practice using spring-web, react techniques
+Just repo for practice using spring-web, react techniques
