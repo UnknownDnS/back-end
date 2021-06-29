@@ -1,1 +1,1 @@
-# Web Project for Practice
+# just repo for practice
