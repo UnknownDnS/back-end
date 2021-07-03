@@ -1,5 +1,4 @@
 package hello.hellospring.repository;
 
-public interface MemberRepositoryi {
-    
+public interface BBSRepositoryi {
 }

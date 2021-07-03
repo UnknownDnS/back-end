@@ -1,7 +1,9 @@
 package hello.hellospring.domain;
 
+import javax.persistence.Entity;
 import java.util.Date;
 
+@Entity
 public class Member {
 
     private Long id; //대리키
