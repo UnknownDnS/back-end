@@ -1,6 +1,7 @@
 package hello.hellospring.service;
 
 import hello.hellospring.domain.User;
+import hello.hellospring.domain.UserRole;
 import hello.hellospring.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,16 +19,17 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public boolean validateUser(User user){
+    public User validateUser(User user){
         /**
          * 멤버 아이디와 패스워드 검사
          * return: 있으면 true, 없으면 false
          */
+        User tmp_user = userRepository.findByUserId(user.getUserId());
+        if (tmp_user.getUserPassword().equals(user.getUserPassword())){
+            return tmp_user;
+        }
 
-
-
-
-        return false;
+        return null;
     }
 
 }

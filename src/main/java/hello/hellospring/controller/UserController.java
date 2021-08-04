@@ -1,6 +1,7 @@
 package hello.hellospring.controller;
 
 import hello.hellospring.domain.User;
+import hello.hellospring.domain.UserRole;
 import hello.hellospring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,19 +22,11 @@ public class UserController {
     public String login(@RequestParam("userId") String userId,
                         @RequestParam("userPassword") String userPassword){
         User user = new User(userId, userPassword);
-        boolean ret = userService.validateUser(user);
-
-        /*if(ret)
-            return "index";
-        else
-            return "index";
-            W
-         */
-        return null;
+        user = userService.validateUser(user);
+        if(user.getUserRole() == UserRole.ADMIN){
+            return "admin.html";
+        }
+        return "index.html";
     }
-
-
-
-
 
 }
