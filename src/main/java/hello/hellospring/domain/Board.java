@@ -1,7 +1,6 @@
 package hello.hellospring.domain;
 
 import lombok.Data;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -11,7 +10,7 @@ public class Board {
 
     @Id @Column(name="BOARD_ID")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long boardId; //대리키
+    private Long id; //기본키
     private String subject; //제목
     private String content; //내용
     @Temporal(TemporalType.TIMESTAMP)
