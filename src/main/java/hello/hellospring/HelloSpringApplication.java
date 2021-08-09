@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class HelloSpringApplication {
 
 	public static void main(String[] args) {
-		log.debug("adsfasdfasdf");
+
 		SpringApplication.run(HelloSpringApplication.class, args);
 	}
 

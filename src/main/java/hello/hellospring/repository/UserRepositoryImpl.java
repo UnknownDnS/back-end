@@ -18,12 +18,9 @@ public class UserRepositoryImpl extends QuerydslRepositorySupport implements Use
         return null;
     }
 
-
     @Override
     @Autowired
     public void setEntityManager(EntityManager entityManager){
         super.setEntityManager(entityManager);
     }
-
-
 }
