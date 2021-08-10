@@ -1,5 +1,5 @@
 # API LIST
-- 1. /user/signup
+- /user/signup
 ```POST: 
   request:
     { userId:string, password:string, name:string }
@@ -14,7 +14,7 @@
     If existing user information wasn't found, inserts user and returns the user info,
     else returns nothing.
 ```
-- 2. /user/login
+- /user/login
 ```POST:
   request:
     { userId:string, password:string }
@@ -30,7 +30,7 @@
     If valid user, make a session and returns userId and name
     else returns nothing.
 ```
-- 3. /user/update
+- /user/update
 ```POST:
   request: 
     { userId:string, password:string, name:string }
