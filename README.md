@@ -1,5 +1,5 @@
 **1. /user/signup
-**```POST: 
+```POST: 
   request:
     { userId:string, password:string, name:string }
 
@@ -14,7 +14,7 @@
     else returns nothing.
 ```
 **2. /user/login
-**```POST:
+```POST:
   request:
     { userId:string, password:string }
 
@@ -30,7 +30,7 @@
     else returns nothing.
 ```
 **3. /user/update
-**```POST:
+```POST:
   request: 
     { userId:string, password:string, name:string }
 
