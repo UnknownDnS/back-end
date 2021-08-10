@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 public class Board {
 
-    @Id @Column(name="BOARD_ID")
+    @Id @Column(name="id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id; //기본키
     private String subject; //제목

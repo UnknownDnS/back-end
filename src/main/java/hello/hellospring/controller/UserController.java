@@ -1,21 +1,16 @@
 package hello.hellospring.controller;
 
 import hello.hellospring.domain.User;
-import hello.hellospring.domain.UserRole;
 import hello.hellospring.domain.dto.UserLoginDTO;
 import hello.hellospring.domain.dto.UserUpdateDTO;
 import hello.hellospring.service.UserService;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-
-@RestController
-//@RequiredArgsConstructor
+@Controller
+@RequestMapping(path="/user") // This means URL's start with /user (after Application path)
 @Slf4j
 public class UserController {
 
@@ -28,62 +23,52 @@ public class UserController {
 
     /**
      * 사용자 정보를 입력받아 로그인
-     * @param userId
-     * @param userPassword
-     * @return
      */
-    @PostMapping("/user/login")
-    public UserLoginDTO login(@RequestParam("userId") String userId,
-                              @RequestParam("userPassword") String userPassword){
+    @PostMapping("/login")
+    public @ResponseBody UserLoginDTO login(@RequestParam String userId, @RequestParam String userPassword){
+        // @ResponseBody means the returned String is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+
+        System.out.println("[info] /ser/login: "+ userId+", "+userPassword );
         User user = new User();
         user.setUserId(userId);
-        user.setUserPassword(userPassword);
+        user.setPassword(userPassword);
         return userService.validateUser(user);
     }
 
     /**
      * 사용자 정보를 입력받아 회원 가입
-     * @param userId
-     * @param userPassword
-     * @param userName
-     * @param role
-     * @return
      */
-    @PostMapping("/user/signUp")
-    public User singUp(@RequestParam("userId") String userId,
-                       @RequestParam("userPassword") String userPassword,
-                       @RequestParam("userName") String userName,
-                       @RequestParam("userRole") UserRole role) {
+    @PostMapping("/signup")
+    public @ResponseBody User singUp(@RequestParam String userId,
+                                     @RequestParam String userPassword,
+                                     @RequestParam String userName) {
+        // @ResponseBody means the returned String is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+
+        System.out.println("[info] /ser/signup: "+ userId+", "+userPassword +", " + userName);
         User user = new User();
         user.setUserId(userId);
-        user.setUserPassword(userPassword);
-        user.setUserName(userName);
-        user.setUserRole(role);
-        user.setCreatedAt(new Date());
-        user.setModifiedAt(new Date());
+        user.setPassword(userPassword);
+        user.setName(userName);
         return userService.insertUser(user);
     }
 
     /**
      * 사용자 정보를 입력받아 업데이트
-     * @param userId
-     * @param userPassword
-     * @param userName
-     * @param role
-     * @return
      */
-    @PostMapping("/user/update")
-    public UserUpdateDTO update(@RequestParam("userId") String userId,
-                                @RequestParam("userPassword") String userPassword,
-                                @RequestParam("userName") String userName,
-                                @RequestParam("userRole") UserRole role) {
+    @PostMapping("/update")
+    public @ResponseBody  UserUpdateDTO update(@RequestParam String userId,
+                                @RequestParam String userPassword,
+                                @RequestParam String userName) {
+        // @ResponseBody means the returned String is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+
+        System.out.println("[info] /ser/update: "+ userId+", "+userPassword +", " + userName);
         User user = new User();
         user.setUserId(userId);
-        user.setUserPassword(userPassword);
-        user.setUserName(userName);
-        user.setUserRole(role);
-        user.setCreatedAt(new Date());
-        user.setModifiedAt(new Date());
+        user.setPassword(userPassword);
+        user.setName(userName);
         return userService.updateUser(user);
     }
 

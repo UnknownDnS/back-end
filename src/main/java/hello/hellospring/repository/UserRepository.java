@@ -6,8 +6,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
-    User findByUserName(@Param("userName") String userName);
-    User findByUserPassword(@Param("userPassword") String userPassword);
+public interface UserRepository extends JpaRepository<User, Long> {
+    User findByName(@Param("name") String name);
+    User findByPassword(@Param("password") String password);
     User findByUserId(@Param("userId") String userId);
 }

@@ -36,9 +36,9 @@ public class UserService {
      */
     public UserLoginDTO validateUser(User user){
         User tmp_user = userRepository.findByUserId(user.getUserId());
-        if (tmp_user.getUserPassword().equals(user.getUserPassword())){
-            UserLoginDTO userLoginDTO = new UserLoginDTO(tmp_user.getUserId(), tmp_user.getUserName());
-            userLoginDTO.setLoginResult(true);
+        if (tmp_user.getPassword().equals(user.getPassword())){
+            UserLoginDTO userLoginDTO = new UserLoginDTO(tmp_user.getUserId(), tmp_user.getName());
+            //userLoginDTO.setLoginResult(true);
             return userLoginDTO;
         }
         return null;
@@ -50,7 +50,7 @@ public class UserService {
      * @return 기존 사용자가 존재하면 null, 존재하지 않으면 해당 사용자 저장
      */
     public User insertUser(User user){
-        if(!exist(user)){
+        if(exist(user)){
             return null;
         }
         return userRepository.save(user);
@@ -65,7 +65,7 @@ public class UserService {
         if (validateUser(user) != null){
             User tmp_user = userRepository.save(user);
             UserUpdateDTO userUpdateDTO = new UserUpdateDTO(
-                tmp_user.getUserId(), tmp_user.getUserName()
+                tmp_user.getUserId(), tmp_user.getName()
             );
             return userUpdateDTO;
         }
