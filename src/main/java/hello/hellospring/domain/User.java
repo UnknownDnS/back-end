@@ -8,10 +8,17 @@ import java.util.Date;
 @Data
 public class User {
 
-    @Id @Column(name="id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+
     //@OneToMany(fetch= FetchType.LAZY)
-    //@JoinColumn(name="BOARD_ID")
+    //@JoinColumn(name="BOARD_PK")
+    //private Board board;
+    /**
+     * Caused by: org.hibernate.AnnotationException:
+     * Illegal attempt to map a non collection as a @OneToMany, @ManyToMany or @CollectionOfElements: hello.hellospring.domain.User.id
+     */
+    @Id @Column(name="USER_PK")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; //기본키
     private String userId; //사용자 아이디
     private String password; //사용자 패스워드

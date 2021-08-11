@@ -3,10 +3,10 @@ package hello.hellospring.domain.dto;
 public class UserUpdateDTO {
 
     private String userId;
-    private String userName;
+    private String name;
 
-    public UserUpdateDTO(String userId, String userName){
+    public UserUpdateDTO(String userId, String name){
         this.userId = userId;
-        this.userName = userName;
+        this.name = name;
     }
 }

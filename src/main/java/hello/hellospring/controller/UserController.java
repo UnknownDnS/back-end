@@ -25,14 +25,14 @@ public class UserController {
      * 사용자 정보를 입력받아 로그인
      */
     @PostMapping("/login")
-    public @ResponseBody UserLoginDTO login(@RequestParam String userId, @RequestParam String userPassword){
+    public @ResponseBody UserLoginDTO login(@RequestParam String userId, @RequestParam String password){
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
-        System.out.println("[info] /ser/login: "+ userId+", "+userPassword );
+        System.out.println("[info] /ser/login: "+ userId+", "+password );
         User user = new User();
         user.setUserId(userId);
-        user.setPassword(userPassword);
+        user.setPassword(password);
         return userService.validateUser(user);
     }
 
@@ -41,16 +41,16 @@ public class UserController {
      */
     @PostMapping("/signup")
     public @ResponseBody User singUp(@RequestParam String userId,
-                                     @RequestParam String userPassword,
-                                     @RequestParam String userName) {
+                                     @RequestParam String password,
+                                     @RequestParam String name) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
-        System.out.println("[info] /ser/signup: "+ userId+", "+userPassword +", " + userName);
+        System.out.println("[info] /ser/signup: "+ userId+", "+password +", " + name);
         User user = new User();
         user.setUserId(userId);
-        user.setPassword(userPassword);
-        user.setName(userName);
+        user.setPassword(password);
+        user.setName(name);
         return userService.insertUser(user);
     }
 
@@ -59,16 +59,16 @@ public class UserController {
      */
     @PostMapping("/update")
     public @ResponseBody  UserUpdateDTO update(@RequestParam String userId,
-                                @RequestParam String userPassword,
-                                @RequestParam String userName) {
+                                @RequestParam String password,
+                                @RequestParam String name) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
-        System.out.println("[info] /ser/update: "+ userId+", "+userPassword +", " + userName);
+        System.out.println("[info] /ser/update: "+ userId+", "+password +", " + name);
         User user = new User();
         user.setUserId(userId);
-        user.setPassword(userPassword);
-        user.setName(userName);
+        user.setPassword(password);
+        user.setName(name);
         return userService.updateUser(user);
     }
 

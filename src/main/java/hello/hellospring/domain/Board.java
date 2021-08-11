@@ -8,15 +8,19 @@ import java.util.Date;
 @Data
 public class Board {
 
-    @Id @Column(name="id")
+    @Id @Column(name="BOARD_PK")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id; //기본키
-    private String subject; //제목
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="USER_PK")
+    private User user;
+
+    private String title; //제목
     private String content; //내용
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt; //작성일자
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedAt; //수정일자
-    private String userName; //글쓴이
 
 }
