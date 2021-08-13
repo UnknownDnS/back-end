@@ -29,7 +29,8 @@ public class UserController {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
-        System.out.println("[info] /ser/login: "+ userId+", "+password );
+
+        System.out.println("[info] /user/login: "+ userId+", "+password );
         User user = new User();
         user.setUserId(userId);
         user.setPassword(password);
@@ -46,7 +47,7 @@ public class UserController {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
-        System.out.println("[info] /ser/signup: "+ userId+", "+password +", " + name);
+        System.out.println("[info] /user/signup: "+ userId+", "+password +", " + name);
         User user = new User();
         user.setUserId(userId);
         user.setPassword(password);
@@ -64,7 +65,7 @@ public class UserController {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
-        System.out.println("[info] /ser/update: "+ userId+", "+password +", " + name);
+        System.out.println("[info] /user/update: "+ userId+", "+password +", " + name);
         User user = new User();
         user.setUserId(userId);
         user.setPassword(password);

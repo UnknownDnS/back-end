@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/board")
-@Controller
-@Slf4j
+import java.util.Date;
+
+@Controller @RequestMapping("/board") @Slf4j
 public class BoardController {
 
     private final BoardService boardService;
@@ -22,8 +22,11 @@ public class BoardController {
     @PostMapping("/create")
     public @ResponseBody Board createBoard(@RequestParam String title,
                                            @RequestParam String content){
-
-        return null;
+        Board board = new Board();
+        board.setTitle(title);
+        board.setContent(content);
+        board.setCreatedAt(new Date());
+        return boardService.createBoard(board);
     }
 
     @GetMapping("/read")
@@ -31,5 +34,8 @@ public class BoardController {
 
         return null;
     }
+
+
+
 
 }
