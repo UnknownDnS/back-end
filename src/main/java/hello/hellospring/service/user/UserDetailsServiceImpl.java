@@ -17,14 +17,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Override
-    public UserDetailsVO loadUserByUsername(String userEmail) {
+    public UserDetailsVO loadUserByUsername(String userId) {
         return userRepository
-                .findByUserEmail(userEmail)
+                .findByUserId(userId)
                 .map(u ->
                         new UserDetailsVO(u, Collections.singleton(
                                 new SimpleGrantedAuthority(u.getUserRole().getValue())
                         ))
                 )
-                .orElseThrow(() -> new UserNotFoundException(userEmail));
+                .orElseThrow(() -> new UserNotFoundException(userId));
     }
 }

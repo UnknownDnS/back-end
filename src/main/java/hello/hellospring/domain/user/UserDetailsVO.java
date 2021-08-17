@@ -1,6 +1,5 @@
 package hello.hellospring.domain.user;
 
-import hello.hellospring.domain.User;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.Delegate;
@@ -29,7 +28,7 @@ public class UserDetailsVO implements UserDetails {
 
     @Override
     public String getUsername() {
-        return userVO.getUserEmail();
+        return userVO.getUserId();
     }
 
     @Override

@@ -1,7 +1,11 @@
 package hello.hellospring.service.user;
 
 
+import hello.hellospring.domain.user.SignUpDTO;
 import hello.hellospring.domain.user.UserVO;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
 import hello.hellospring.domain.User;
@@ -25,7 +29,7 @@ public class UserService {
 
     //**
      * 같은 Id를 가진 기존 사용자가 있는지 확인
-     * @param user
+     * @param
      * @return
      * 존재하면 true, 존재 하지않으면 false
      *
@@ -35,7 +39,7 @@ public class UserService {
 
     /**
      * 사용자가 존재하는지 검증
-     * @param user
+     * @param
      * @return: 있으면 ture, 없으면 false
      *
     public UserLoginDTO validateUser(User user){
@@ -50,7 +54,7 @@ public class UserService {
 
     /**
      * 사용자 새로 추가
-     * @param user
+     * @param
      * @return 기존 사용자가 존재하면 null, 존재하지 않으면 해당 사용자 저장
      *
     public User insertUser(User user){
@@ -62,7 +66,7 @@ public class UserService {
 
     /**
      * 사용자 정보 업데이트
-     * @param user
+     * @param
      * @return
      *
     public UserUpdateDTO updateUser(User user){
@@ -81,9 +85,8 @@ public class UserService {
 public interface UserService {
 
     UserVO login(UserVO userVO);
-
+    UserVO signup(final SignUpDTO signUpDTO);
     UserVO createUser(UserVO userVO);
-
-    UserVO findUserByUserEmail(String userEmail);
-
+    Optional<UserVO> findByUserId(String userEmail);
+    List<UserVO> findAll();
 }

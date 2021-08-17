@@ -23,6 +23,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 */
 @Repository
 public interface UserRepository extends JpaRepository<UserVO, Long> {
-    UserVO findByUserEmailAndUserPw(String userId, String userPw);
-    Optional<UserVO> findByUserEmail(String userEmail);
+    UserVO findByUserIdAndUserPw(String userId, String userPw);
+    Optional<UserVO> findByUserId(String userId);
 }

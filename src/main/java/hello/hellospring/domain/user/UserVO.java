@@ -16,22 +16,23 @@ import java.io.Serializable;
 public class UserVO extends CommonVO implements Serializable {
 
     @Setter
-    //@Column(nullable = false, unique = true, length = 50)
-    private String userEmail;
+    @Column(nullable = false, unique = true, length = 50)
+    private String userId;
 
     @Setter
-    //@Column(nullable = false)
+    @Column(nullable = false)
     private String userPw;
 
     @Setter
-   //@Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50)
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
     @Builder
-    public UserVO(String userEmail, String userPw){
-        this.userEmail = userEmail;
+    public UserVO(String userId, String userPw, UserRole userRole){
+        this.userId = userId;
         this.userPw = userPw;
+        this.userRole = userRole;
     }
 
 }

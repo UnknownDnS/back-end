@@ -11,6 +11,13 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+/**
+ * -AuthenticationProvider는 Authentication 구현체를 처리하는 클래스를 나타낸다.
+ *
+ * -authentication은 요청이 AuthenticationManager.authenticate(Authentication) method로 처리 후,
+ * 인증 받은 주체와 인증 요청에 대한 토큰을 말한다.
+ *
+ */
 @RequiredArgsConstructor
 @Log4j2
 public class CustomAuthenticationProvider implements AuthenticationProvider {

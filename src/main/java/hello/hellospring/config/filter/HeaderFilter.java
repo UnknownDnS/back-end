@@ -6,6 +6,8 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
+//chain.doFilter를 기준으로 컨트롤러 실행하기 전에 실행하고 컨트롤러 끝나고 실행.
 @Log4j2
 public class HeaderFilter implements Filter {
 
