@@ -1,28 +1,20 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.user.User;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
 import java.util.Optional;
 
-/*
-import hello.hellospring.domain.User;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
-
-@Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    User findByName(@Param("name") String name);
-    User findByPassword(@Param("password") String password);
-    User findByUserId(@Param("userId") String userId);
 
-}
+    /*
+     * EntityGraph는 쿼리가 수행이 될때 Lazy 조회가 아니고
+     * Eager조회로 authorities 정보를 같이 가져옴
+     */
+    @EntityGraph(attributePaths = "authorities")
+    Optional<User> findOneWithAuthoritiesByUserName(String userName);
 
-*/
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    User findByUserIdAndUserPw(String userId, String userPw);
-    Optional<User> findByUserId(String userId);
+    //User findByUserNameAndUserPw(String userName, String userPw);
+   // Optional<User> findByUserName(String userName);
+
 }

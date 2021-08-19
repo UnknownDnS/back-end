@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.Getter;
 
 @Data
-public class SignUpDTO {
-    private String userId;
+public class LoginDTO {
+    private String userName;
     private String userPw;
 }
