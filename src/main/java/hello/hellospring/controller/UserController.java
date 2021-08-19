@@ -4,12 +4,13 @@ import hello.hellospring.domain.user.User;
 import hello.hellospring.domain.user.UserDTO;
 import hello.hellospring.service.user.UserService;
 import hello.hellospring.service.user.UserServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-
+@Slf4j
 @RestController
 @RequestMapping("/api")
 public class UserController {
@@ -25,9 +26,8 @@ public class UserController {
     }
 
     @PostMapping ("/signup")
-    public ResponseEntity<User> signup(
-            @Valid @RequestBody UserDTO userDto
-    ) {
+    public ResponseEntity<User> signup( @Valid @RequestBody UserDTO userDto) {
+        log.info(userDto.getUserPw(), userDto.getNickName());
         return ResponseEntity.ok(userService.signup(userDto));
     }
 

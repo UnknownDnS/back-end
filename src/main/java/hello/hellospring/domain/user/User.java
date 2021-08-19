@@ -29,10 +29,10 @@ public class User extends CommonVO implements Serializable {
     private String userName;
 
     @JsonIgnore
-    @Column(nullable = false)
+    @Column(nullable = false ,length = 100)
     private String userPw;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 50)
     private String nickName;
 
     @ManyToMany
