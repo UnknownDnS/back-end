@@ -1,54 +1,44 @@
-hello/hellospring/HelloSpringApplication.java
- hello.hellospring.HelloSpringApplication
 hello/hellospring/domain/user/UserRole.java
  hello.hellospring.domain.user.UserRole
-hello/hellospring/domain/Comment.java
- hello.hellospring.domain.Comment
-hello/hellospring/controller/HomeController.java
- hello.hellospring.controller.HomeController
-hello/hellospring/config/filter/HeaderFilter.java
- hello.hellospring.config.filter.HeaderFilter
-hello/hellospring/domain/common/CommonVO.java
- hello.hellospring.domain.common.CommonVO
-hello/hellospring/exception/UserNotFoundException.java
- hello.hellospring.exception.UserNotFoundException
+hello/hellospring/domain/user/User.java
+ hello.hellospring.domain.user.User
+ hello.hellospring.domain.user.User$UserBuilder
+hello/hellospring/domain/board/BoardUpdateDTO.java
+ hello.hellospring.domain.board.BoardUpdateDTO
 hello/hellospring/domain/user/UserListResponseDTO.java
  hello.hellospring.domain.user.UserListResponseDTO
  hello.hellospring.domain.user.UserListResponseDTO$UserListResponseDTOBuilder
-hello/hellospring/config/web/WebMvcConfig.java
- hello.hellospring.config.web.WebMvcConfig
-hello/hellospring/controller/ErrorController.java
- hello.hellospring.controller.ErrorController
-hello/hellospring/domain/user/AuthConstants.java
- hello.hellospring.domain.user.AuthConstants
-hello/hellospring/config/security/CustomAuthenticationFilter.java
- hello.hellospring.config.security.CustomAuthenticationFilter
-hello/hellospring/config/security/CustomAuthenticationProvider.java
- hello.hellospring.config.security.CustomAuthenticationProvider
-hello/hellospring/utils/TokenUtils.java
- hello.hellospring.utils.TokenUtils
-hello/hellospring/handler/CustomLoginSuccessHandler.java
- hello.hellospring.handler.CustomLoginSuccessHandler
-hello/hellospring/service/user/UserDetailsServiceImpl.java
- hello.hellospring.service.user.UserDetailsServiceImpl
-interceptor/JwtTokenInterceptor.java
- interceptor.JwtTokenInterceptor
-hello/hellospring/domain/user/UserDetailsVO.java
- hello.hellospring.domain.user.UserDetailsVO
-hello/hellospring/domain/user/SignUpDTO.java
- hello.hellospring.domain.user.SignUpDTO
-hello/hellospring/config/security/WebSecurityConfig.java
- hello.hellospring.config.security.WebSecurityConfig
-hello/hellospring/domain/user/UserVO.java
- hello.hellospring.domain.user.UserVO
- hello.hellospring.domain.user.UserVO$UserVOBuilder
-hello/hellospring/exception/InputNotFoundException.java
- hello.hellospring.exception.InputNotFoundException
-hello/hellospring/repository/user/UserRepository.java
- hello.hellospring.repository.user.UserRepository
+hello/hellospring/service/board/BoardService.java
+ hello.hellospring.service.board.BoardService
+hello/hellospring/domain/board/Comment.java
+ hello.hellospring.domain.board.Comment
+hello/hellospring/domain/board/BoardReadDTO.java
+ hello.hellospring.domain.board.BoardReadDTO
+hello/hellospring/domain/board/Board.java
+ hello.hellospring.domain.board.Board
+hello/hellospring/domain/board/BoardCreateReqDTO.java
+ hello.hellospring.domain.board.BoardCreateReqDTO
+hello/hellospring/controller/APIResponse.java
+ hello.hellospring.controller.APIResponse
+hello/hellospring/controller/BoardController.java
+ hello.hellospring.controller.BoardController
+hello/hellospring/controller/UserController.java
+ hello.hellospring.controller.UserController
+hello/hellospring/repository/UserRepository.java
+ hello.hellospring.repository.UserRepository
+hello/hellospring/domain/common/CommonVO.java
+ hello.hellospring.domain.common.CommonVO
 hello/hellospring/service/user/UserService.java
  hello.hellospring.service.user.UserService
+hello/hellospring/domain/user/SignUpDTO.java
+ hello.hellospring.domain.user.SignUpDTO
+hello/hellospring/domain/board/BoardCreateResDTO.java
+ hello.hellospring.domain.board.BoardCreateResDTO
+hello/hellospring/repository/BoardRepository.java
+ hello.hellospring.repository.BoardRepository
+hello/hellospring/HelloSpringApplication.java
+ hello.hellospring.HelloSpringApplication
 hello/hellospring/service/user/UserServiceImpl.java
  hello.hellospring.service.user.UserServiceImpl
-hello/hellospring/controller/user/UserController.java
- hello.hellospring.controller.user.UserController
+hello/hellospring/service/board/BoardServiceImpl.java
+ hello.hellospring.service.board.BoardServiceImpl

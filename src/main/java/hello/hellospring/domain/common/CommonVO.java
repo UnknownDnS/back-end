@@ -28,7 +28,6 @@ public abstract class CommonVO implements Serializable {
     @Column(length = 20)
     private LocalDateTime updatedAt;                        // 수정 일자
 
-
     @Setter
     @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT true")
     private Boolean isEnable = true;                        // 사용 여부

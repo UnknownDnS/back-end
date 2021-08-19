@@ -7,5 +7,5 @@ import java.util.List;
 @Getter
 @Builder
 public class UserListResponseDTO {
-    private final List<UserVO> userList;
+    private final List<User> userList;
 }
