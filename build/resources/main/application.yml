@@ -1,4 +1,0 @@
-jwt:
-  header: Authorization
-  secret: 7KG064KY7J20IOu5oeyEuOqyjCDsvZTrlKntlZjripQg7KSR7J24642wIOyZnCDsl5Drn6zsnZgg7Zal7Jew7J206rOgIOy2leygnOuhnOq1rOuCmA==
-  token-validity-in-seconds: 86400
