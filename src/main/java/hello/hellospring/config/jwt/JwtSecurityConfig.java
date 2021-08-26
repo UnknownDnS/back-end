@@ -9,12 +9,12 @@ public class JwtSecurityConfig extends SecurityConfigurerAdapter<DefaultSecurity
 
     private TokenProvider tokenProvider;
 
-    public JwtSecurityConfig(TokenProvider tokenProvider){
+    public JwtSecurityConfig(TokenProvider tokenProvider) {
         this.tokenProvider = tokenProvider;
     }
 
     @Override
-    public void configure(HttpSecurity http){
+    public void configure(HttpSecurity http) {
         JwtFilter customFilter = new JwtFilter(tokenProvider);
         http.addFilterBefore(customFilter, UsernamePasswordAuthenticationFilter.class);
         //JwtFilter를 통해 시큐리티 로직에 필터를 등록

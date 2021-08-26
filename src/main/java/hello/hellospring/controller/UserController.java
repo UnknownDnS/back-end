@@ -1,45 +1,47 @@
 package hello.hellospring.controller;
 
-import hello.hellospring.domain.user.User;
-import hello.hellospring.domain.user.UserDTO;
-import hello.hellospring.service.user.UserService;
-import hello.hellospring.service.user.UserServiceImpl;
+import hello.hellospring.domain.entity.User;
+import hello.hellospring.dto.response.RootResponseDto;
+import hello.hellospring.dto.response.UserResponseDto;
+import hello.hellospring.serviceImpl.UserServiceImpl;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api")
 public class UserController {
+
     private final UserServiceImpl userService;
 
-    public UserController(UserServiceImpl userService) {
-        this.userService = userService;
-    }
-
-    @GetMapping("/hello")
-    public ResponseEntity<String> hello() {
-        return ResponseEntity.ok("hello");
-    }
-
-    @PostMapping ("/signup")
-    public ResponseEntity<User> signup( @Valid @RequestBody UserDTO userDto) {
-        log.info(userDto.getUserPw(), userDto.getNickName());
-        return ResponseEntity.ok(userService.signup(userDto));
-    }
-
+    /**
+     * 전체 유저 정보 조회
+     *
+     * @return
+     */
     @GetMapping("/user")
-    @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ResponseEntity<User> getMyUserInfo() {
-        return ResponseEntity.ok(userService.getMyUserWithAuthorities().get());
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    public RootResponseDto<UserResponseDto> userList() {
+        return null;
     }
 
+    /**
+     * 유저 한명 정보 조회
+     *
+     * @param username
+     * @return
+     */
     @GetMapping("/user/{username}")
-    @PreAuthorize("hasAnyRole('ADMIN')")
-    public ResponseEntity<User> getUserInfo(@PathVariable String username) {
-        return ResponseEntity.ok(userService.getUserWithAuthorities(username).get());
+    public RootResponseDto<UserResponseDto> userInfo(@PathVariable String username) {
+        UserResponseDto dto = userService.getUserWithAuthorities(username);
+        return new RootResponseDto<UserResponseDto>()
+                .code(HttpStatus.OK.value())
+                .response(dto)
+                .build();
     }
 }
