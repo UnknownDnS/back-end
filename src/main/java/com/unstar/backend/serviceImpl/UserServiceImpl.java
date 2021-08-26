@@ -59,7 +59,7 @@ public class UserServiceImpl {
                 .orElseThrow(() -> new InvalidUserNameException("존재하지 않는 유저네임 입니다."));
 
         String loginUser = SecurityUtil.getCurrentUsername().get();
-        if (!loginUser.equals("admin") && loginUser.equals(username)) {
+        if (!loginUser.equals("admin") && !loginUser.equals(username)) {
             throw new ForbiddenException("조회 권한이 없습니다.");
         }
 
