@@ -50,7 +50,7 @@ public class AuthController {
         dto.setToken(jwt);
         return new RootResponseDto<LoginResponseDto>()
                 .code(HttpStatus.OK.value())
-                .data(dto)
+                .response(dto)
                 .build();
     }
 
@@ -66,7 +66,7 @@ public class AuthController {
         SignUpResponseDto dto = userService.signup(signUpRequestDto);
         return new RootResponseDto<SignUpResponseDto>()
                 .code(HttpStatus.OK.value())
-                .data(dto)
+                .response(dto)
                 .build();
     }
 

@@ -15,14 +15,14 @@ public class RootResponseDto<T> {
 
     private String errorMsg;
 
-    private T data;
+    private T response;
 
     @JsonFormat(pattern = JsonFormatConstant.YYYYMMDD_HHMMSS)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime timestamp;
 
-    public RootResponseDto<T> data(T data) {
-        this.data = data;
+    public RootResponseDto<T> response(T response) {
+        this.response = response;
         return this;
     }
 
