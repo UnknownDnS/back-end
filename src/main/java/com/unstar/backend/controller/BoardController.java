@@ -39,7 +39,7 @@ public class BoardController {
         return new RootResponseDto<BoardCreateResponseDto>()
                 .code(HttpStatus.OK.value())
                 .errorMsg(null)
-                .response(dto)
+                .data(dto)
                 .build();
     }
 

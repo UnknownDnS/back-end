@@ -39,7 +39,7 @@ public class UserController {
         UserResponseDto dto = userService.getUserWithAuthorities(username);
         return new RootResponseDto<UserResponseDto>()
                 .code(HttpStatus.OK.value())
-                .response(dto)
+                .data(dto)
                 .build();
     }
 }
