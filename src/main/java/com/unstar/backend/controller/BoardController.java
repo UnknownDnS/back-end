@@ -2,7 +2,9 @@ package com.unstar.backend.controller;
 
 import com.unstar.backend.domain.entity.Board;
 import com.unstar.backend.dto.request.BoardCreateRequestDto;
+import com.unstar.backend.dto.request.BoardUpdateRequestDto;
 import com.unstar.backend.dto.response.BoardCreateResponseDto;
+import com.unstar.backend.dto.response.BoardUpdateResponseDto;
 import com.unstar.backend.dto.response.RootResponseDto;
 import com.unstar.backend.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +36,7 @@ public class BoardController {
      */
     @PostMapping("/board")
     public RootResponseDto<BoardCreateResponseDto> create(@RequestBody BoardCreateRequestDto boardCreateRequestDto) {
-        log.info("[create board]");
+        log.info("[+] create board");
         BoardCreateResponseDto dto = boardService.createBoard(boardCreateRequestDto);
         return new RootResponseDto<BoardCreateResponseDto>()
                 .code(HttpStatus.OK.value())
@@ -44,14 +46,20 @@ public class BoardController {
     }
 
     @PutMapping("/board")
-    public ResponseEntity<Board> update(@RequestBody Board board) {
-        return null;
+    public RootResponseDto<BoardUpdateResponseDto> update(@RequestBody BoardUpdateRequestDto boardUpdateRequestDto) {
+        log.info("[+] update board");
+        BoardUpdateResponseDto dto = boardService.updateBoard(boardUpdateRequestDto);
+        return new RootResponseDto<BoardUpdateResponseDto>()
+                .code(HttpStatus.OK.value())
+                .errorMsg(null)
+                .build();
     }
 
     @DeleteMapping("/board/{boardId}")
-    public ResponseEntity<Board> delete(@PathVariable Integer boardId) {
-        return null;
-    }
+    public Long delete(@PathVariable Long boardId) {
+        log.info("[+] delete board");
 
+        return boardService.deleteBoard(boardId);
+    }
 
 }
