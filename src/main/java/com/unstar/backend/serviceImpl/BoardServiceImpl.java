@@ -5,7 +5,7 @@ import com.unstar.backend.domain.repository.BoardRepository;
 import com.unstar.backend.dto.request.BoardCreateRequestDto;
 import com.unstar.backend.dto.request.BoardUpdateRequestDto;
 import com.unstar.backend.dto.response.BoardCreateResponseDto;
-import com.unstar.backend.dto.response.BoardListAllResponseDto;
+import com.unstar.backend.dto.response.BoardResponseDto;
 import com.unstar.backend.dto.response.BoardUpdateResponseDto;
 import com.unstar.backend.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -22,26 +22,26 @@ public class BoardServiceImpl implements BoardService {
     private final BoardRepository boardRepository;
 
     @Override
-    public Board save(Board board) {
+    public com.unstar.backend.domain.entity.Board save(com.unstar.backend.domain.entity.Board board) {
         return boardRepository.save(board);
     }
 
     @Override
-    public Optional<Board> findById(Long boardId) {
+    public Optional<com.unstar.backend.domain.entity.Board> findById(Long boardId) {
         return boardRepository.findById(boardId);
     }
 
     @Override
-    public List<BoardListAllResponseDto> findAll() {
-        List<BoardListAllResponseDto> dtoList = new ArrayList<>();
+    public List<BoardResponseDto> findAll() {
+        List<BoardResponseDto> dtoList = new ArrayList<>();
         List<Board> boardList = boardRepository.findAll();
         for (Board board : boardList){
-            BoardListAllResponseDto dto = new BoardListAllResponseDto();
+            BoardResponseDto dto = new BoardResponseDto();
             dto.setId(board.getId());
             dto.setAuthor(board.getAuthor());
             dto.setTitle(board.getTitle());
             dto.setContent(board.getTitle());
-            dto.setTotalComments(board.getComments().stream().count());
+            dto.setTotalComments(board.getComments().size());
             dto.setCreatedAt(board.getCreatedAt());
             dto.setUpdatedAt(board.getUpdatedAt());
             dtoList.add(dto);
@@ -51,18 +51,18 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public BoardCreateResponseDto createBoard(BoardCreateRequestDto boardCreateRequestDto) {
-        Board board = new Board();
+        com.unstar.backend.domain.entity.Board board = new com.unstar.backend.domain.entity.Board();
         board.setAuthor(boardCreateRequestDto.getAuthor());
         board.setContent(boardCreateRequestDto.getContent());
         board.setTitle(boardCreateRequestDto.getTitle());
-        Board savedBoard = boardRepository.save(board);
+        com.unstar.backend.domain.entity.Board savedBoard = boardRepository.save(board);
         BoardCreateResponseDto dto = BoardCreateResponseDto.fromEntity(savedBoard);
         return dto;
     }
 
     @Override //null exception processing
     public BoardUpdateResponseDto updateBoard(BoardUpdateRequestDto boardUpdateRequestDto) {
-        Board board = findById(boardUpdateRequestDto.getId()).orElse(null);
+        com.unstar.backend.domain.entity.Board board = findById(boardUpdateRequestDto.getId()).orElse(null);
         board = boardRepository.save(board);
         return new BoardUpdateResponseDto().fromEntity(board);
     }

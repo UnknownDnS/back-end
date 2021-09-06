@@ -15,13 +15,12 @@ public class Board extends CommonVO implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private Long id;                                        // 고유번호
+    private Long id;              // 고유번호
 
     @Column
     private String author; //작성자
 
-    @OneToMany(fetch = FetchType.EAGER)
-    //@JoinColumn("board_id")
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
     private List<Comment> comments; //댓글
 
     @Column

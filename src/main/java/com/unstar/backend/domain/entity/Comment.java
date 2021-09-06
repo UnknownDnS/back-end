@@ -17,16 +17,14 @@ public class Comment extends CommonVO implements Serializable {
     @Column(nullable = false)
     private Long id;                                        // 고유번호
 
-    //@Column("board_id")
-    private Integer boardId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "board_id")
+    private Board board;
 
     @Column
     private String userName; //글쓴이
 
     @Column
     private String content; //댓글 내용
-
-    @Column
-    private String title;
 
 }

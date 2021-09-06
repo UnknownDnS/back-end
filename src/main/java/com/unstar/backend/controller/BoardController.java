@@ -1,17 +1,15 @@
 package com.unstar.backend.controller;
 
-import com.unstar.backend.domain.entity.Board;
 import com.unstar.backend.dto.request.BoardCreateRequestDto;
 import com.unstar.backend.dto.request.BoardUpdateRequestDto;
 import com.unstar.backend.dto.response.BoardCreateResponseDto;
-import com.unstar.backend.dto.response.BoardListAllResponseDto;
+import com.unstar.backend.dto.response.BoardResponseDto;
 import com.unstar.backend.dto.response.BoardUpdateResponseDto;
 import com.unstar.backend.dto.response.RootResponseDto;
 import com.unstar.backend.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,10 +23,10 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("/board")
-    public RootResponseDto<List<BoardListAllResponseDto>> findAll() {
+    public RootResponseDto<List<BoardResponseDto>> findAll() {
         log.info("[+] find all boards");
 
-        return new RootResponseDto<List<BoardListAllResponseDto>>()
+        return new RootResponseDto<List<BoardResponseDto>>()
                 .code(HttpStatus.OK.value())
                 .errorMsg(null)
                 .response(boardService.findAll())
