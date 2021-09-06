@@ -4,6 +4,7 @@ import com.unstar.backend.domain.entity.Board;
 import com.unstar.backend.dto.request.BoardCreateRequestDto;
 import com.unstar.backend.dto.request.BoardUpdateRequestDto;
 import com.unstar.backend.dto.response.BoardCreateResponseDto;
+import com.unstar.backend.dto.response.BoardListAllResponseDto;
 import com.unstar.backend.dto.response.BoardUpdateResponseDto;
 import com.unstar.backend.dto.response.RootResponseDto;
 import com.unstar.backend.service.BoardService;
@@ -24,9 +25,18 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("/board")
-    public ResponseEntity<List<Board>> findAll() {
-        return null;
+    public RootResponseDto<List<BoardListAllResponseDto>> findAll() {
+        log.info("[+] find all boards");
+
+        return new RootResponseDto<List<BoardListAllResponseDto>>()
+                .code(HttpStatus.OK.value())
+                .errorMsg(null)
+                .response(boardService.findAll())
+                .build();
     }
+
+
+
 
     /**
      * 글 등록
