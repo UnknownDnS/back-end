@@ -34,7 +34,7 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public List<BoardResponseDto> findAll() {
         List<BoardResponseDto> dtoList = new ArrayList<>();
-        List<Board> boardList = boardRepository.findAll();
+        List<Board> boardList = boardRepository.findAllCreatedAtDesc();
         for (Board board : boardList){
             BoardResponseDto dto = new BoardResponseDto();
             dto.setId(board.getId());

@@ -22,7 +22,7 @@ public class UserController {
      *
      * @return
      */
-    @GetMapping("/user")
+    @GetMapping("/user/all")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public RootResponseDto<UserResponseDto> userList() {
         return null;
@@ -35,8 +35,23 @@ public class UserController {
      * @return
      */
     @GetMapping("/user/{username}")
-    public RootResponseDto<UserResponseDto> userInfo(@PathVariable String username) {
+    public RootResponseDto<UserResponseDto> userByUsername(@PathVariable String username) {
         UserResponseDto dto = userService.getUserWithAuthorities(username);
+        return new RootResponseDto<UserResponseDto>()
+                .code(HttpStatus.OK.value())
+                .response(dto)
+                .build();
+    }
+
+    /**
+     * 현재 로그인 된 유저 정보
+     *
+     * @return
+     */
+    @GetMapping("/user")
+    public RootResponseDto<UserResponseDto> userInfo() {
+        log.info("[/user]");
+        UserResponseDto dto = userService.getLoginUser();
         return new RootResponseDto<UserResponseDto>()
                 .code(HttpStatus.OK.value())
                 .response(dto)
