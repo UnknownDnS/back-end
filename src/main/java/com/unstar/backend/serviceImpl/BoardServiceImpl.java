@@ -40,7 +40,7 @@ public class BoardServiceImpl implements BoardService {
             dto.setId(board.getId());
             dto.setAuthor(board.getAuthor());
             dto.setTitle(board.getTitle());
-            dto.setContent(board.getTitle());
+            dto.setContent(board.getContent());
             dto.setTotalComments(board.getComments().size());
             dto.setCreatedAt(board.getCreatedAt());
             dto.setUpdatedAt(board.getUpdatedAt());
