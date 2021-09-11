@@ -9,7 +9,9 @@ import com.unstar.backend.dto.response.BoardResponseDto;
 import com.unstar.backend.dto.response.BoardUpdateResponseDto;
 import com.unstar.backend.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,17 +19,19 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
+@Transactional
 public class BoardServiceImpl implements BoardService {
 
     private final BoardRepository boardRepository;
 
     @Override
-    public com.unstar.backend.domain.entity.Board save(com.unstar.backend.domain.entity.Board board) {
+    public Board save(com.unstar.backend.domain.entity.Board board) {
         return boardRepository.save(board);
     }
 
     @Override
-    public Optional<com.unstar.backend.domain.entity.Board> findById(Long boardId) {
+    public Optional<Board> findById(Long boardId) {
         return boardRepository.findById(boardId);
     }
 

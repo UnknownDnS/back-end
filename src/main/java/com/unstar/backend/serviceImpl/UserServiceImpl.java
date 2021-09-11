@@ -2,6 +2,7 @@ package com.unstar.backend.serviceImpl;
 
 import com.unstar.backend.dto.response.SignUpResponseDto;
 import com.unstar.backend.dto.response.UserResponseDto;
+import com.unstar.backend.service.UserService;
 import com.unstar.backend.utils.SecurityUtil;
 import com.unstar.backend.exception.ForbiddenException;
 import com.unstar.backend.exception.InvalidUserNameException;
@@ -19,7 +20,8 @@ import java.util.Collections;
 
 @Service
 @Slf4j
-public class UserServiceImpl {
+@Transactional
+public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -28,7 +30,7 @@ public class UserServiceImpl {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @Transactional
+    @Override
     public SignUpResponseDto signup(SignUpRequestDto signUpRequestDto) {
         if (userRepository.findOneWithAuthoritiesByUserName(signUpRequestDto.getUserName()).orElse(null) != null) {
             throw new InvalidUserNameException("이미 가입되어 있는 유저입니다.");
@@ -53,7 +55,7 @@ public class UserServiceImpl {
         return dto;
     }
 
-    @Transactional(readOnly = true)
+    @Override
     public UserResponseDto getUserWithAuthorities(String username) {
         User user = userRepository.findByUserName(username)
                 .orElseThrow(() -> new InvalidUserNameException("존재하지 않는 유저네임 입니다."));
@@ -66,6 +68,7 @@ public class UserServiceImpl {
         return UserResponseDto.fromEntity(user);
     }
 
+    @Override
     public UserResponseDto getLoginUser() {
         String loginUser = SecurityUtil.getCurrentUsername().get();
         User user = userRepository.findByUserName(loginUser)

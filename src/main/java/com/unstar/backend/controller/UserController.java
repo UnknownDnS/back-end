@@ -2,7 +2,7 @@ package com.unstar.backend.controller;
 
 import com.unstar.backend.dto.response.RootResponseDto;
 import com.unstar.backend.dto.response.UserResponseDto;
-import com.unstar.backend.serviceImpl.UserServiceImpl;
+import com.unstar.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class UserController {
 
-    private final UserServiceImpl userService;
+    private final UserService userService;
 
     /**
      * 전체 유저 정보 조회
