@@ -4,7 +4,7 @@ import com.unstar.backend.domain.entity.Board;
 import com.unstar.backend.domain.repository.BoardRepository;
 import com.unstar.backend.dto.request.BoardCreateRequestDto;
 import com.unstar.backend.dto.request.BoardUpdateRequestDto;
-import com.unstar.backend.dto.response.BoardCreateResponseDto;
+import com.unstar.backend.dto.response.BoardInsertResponseDto;
 import com.unstar.backend.dto.response.BoardResponseDto;
 import com.unstar.backend.dto.response.BoardUpdateResponseDto;
 import com.unstar.backend.service.BoardService;
@@ -50,13 +50,13 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public BoardCreateResponseDto createBoard(BoardCreateRequestDto boardCreateRequestDto) {
+    public BoardInsertResponseDto createBoard(BoardCreateRequestDto boardCreateRequestDto) {
         com.unstar.backend.domain.entity.Board board = new com.unstar.backend.domain.entity.Board();
         board.setAuthor(boardCreateRequestDto.getAuthor());
         board.setContent(boardCreateRequestDto.getContent());
         board.setTitle(boardCreateRequestDto.getTitle());
         com.unstar.backend.domain.entity.Board savedBoard = boardRepository.save(board);
-        BoardCreateResponseDto dto = BoardCreateResponseDto.fromEntity(savedBoard);
+        BoardInsertResponseDto dto = BoardInsertResponseDto.fromEntity(savedBoard);
         return dto;
     }
 

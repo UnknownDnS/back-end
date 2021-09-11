@@ -2,7 +2,7 @@ package com.unstar.backend.controller;
 
 import com.unstar.backend.dto.request.BoardCreateRequestDto;
 import com.unstar.backend.dto.request.BoardUpdateRequestDto;
-import com.unstar.backend.dto.response.BoardCreateResponseDto;
+import com.unstar.backend.dto.response.BoardInsertResponseDto;
 import com.unstar.backend.dto.response.BoardResponseDto;
 import com.unstar.backend.dto.response.BoardUpdateResponseDto;
 import com.unstar.backend.dto.response.RootResponseDto;
@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -33,20 +32,11 @@ public class BoardController {
                 .build();
     }
 
-
-
-
-    /**
-     * 글 등록
-     *
-     * @param boardCreateRequestDto
-     * @return
-     */
     @PostMapping("/board")
-    public RootResponseDto<BoardCreateResponseDto> create(@RequestBody BoardCreateRequestDto boardCreateRequestDto) {
-        log.info("[+] create board");
-        BoardCreateResponseDto dto = boardService.createBoard(boardCreateRequestDto);
-        return new RootResponseDto<BoardCreateResponseDto>()
+    public RootResponseDto<BoardInsertResponseDto> insert(@RequestBody BoardCreateRequestDto boardCreateRequestDto) {
+        log.info("[+] insert board");
+        BoardInsertResponseDto dto = boardService.createBoard(boardCreateRequestDto);
+        return new RootResponseDto<BoardInsertResponseDto>()
                 .code(HttpStatus.OK.value())
                 .errorMsg(null)
                 .response(dto)
@@ -66,7 +56,6 @@ public class BoardController {
     @DeleteMapping("/board/{boardId}")
     public Long delete(@PathVariable Long boardId) {
         log.info("[+] delete board");
-
         return boardService.deleteBoard(boardId);
     }
 
