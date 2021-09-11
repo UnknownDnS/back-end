@@ -34,13 +34,13 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public List<BoardResponseDto> findAll() {
         List<BoardResponseDto> dtoList = new ArrayList<>();
-        List<Board> boardList = boardRepository.findAll();
+        List<Board> boardList = boardRepository.findAllCreatedAtDesc();
         for (Board board : boardList){
             BoardResponseDto dto = new BoardResponseDto();
             dto.setId(board.getId());
             dto.setAuthor(board.getAuthor());
             dto.setTitle(board.getTitle());
-            dto.setContent(board.getTitle());
+            dto.setContent(board.getContent());
             dto.setTotalComments(board.getComments().size());
             dto.setCreatedAt(board.getCreatedAt());
             dto.setUpdatedAt(board.getUpdatedAt());

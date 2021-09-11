@@ -65,4 +65,11 @@ public class UserServiceImpl {
 
         return UserResponseDto.fromEntity(user);
     }
+
+    public UserResponseDto getLoginUser() {
+        String loginUser = SecurityUtil.getCurrentUsername().get();
+        User user = userRepository.findByUserName(loginUser)
+                .orElseThrow(() -> new InvalidUserNameException("존재하지 않는 유저네임 입니다."));
+        return UserResponseDto.fromEntity(user);
+    }
 }
