@@ -22,7 +22,7 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("/board")
-    public RootResponseDto<List<BoardResponseDto>> findAll() {
+    public RootResponseDto<List<BoardResponseDto>> findAllBoards() {
         log.info("[+] find all boards");
 
         return new RootResponseDto<List<BoardResponseDto>>()
@@ -33,7 +33,7 @@ public class BoardController {
     }
 
     @PostMapping("/board")
-    public RootResponseDto<BoardInsertResponseDto> insert(@RequestBody BoardCreateRequestDto boardCreateRequestDto) {
+    public RootResponseDto<BoardInsertResponseDto> insertBoard(@RequestBody BoardCreateRequestDto boardCreateRequestDto) {
         log.info("[+] insert board");
         BoardInsertResponseDto dto = boardService.createBoard(boardCreateRequestDto);
         return new RootResponseDto<BoardInsertResponseDto>()
@@ -44,7 +44,7 @@ public class BoardController {
     }
 
     @PutMapping("/board")
-    public RootResponseDto<BoardUpdateResponseDto> update(@RequestBody BoardUpdateRequestDto boardUpdateRequestDto) {
+    public RootResponseDto<BoardUpdateResponseDto> updateBoard(@RequestBody BoardUpdateRequestDto boardUpdateRequestDto) {
         log.info("[+] update board");
         BoardUpdateResponseDto dto = boardService.updateBoard(boardUpdateRequestDto);
         return new RootResponseDto<BoardUpdateResponseDto>()
@@ -54,7 +54,7 @@ public class BoardController {
     }
 
     @DeleteMapping("/board/{boardId}")
-    public Long delete(@PathVariable Long boardId) {
+    public Long deleteBoard(@PathVariable Long boardId) {
         log.info("[+] delete board");
         return boardService.deleteBoard(boardId);
     }
