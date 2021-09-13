@@ -1,7 +1,7 @@
 package com.unstar.backend.config.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.unstar.backend.dto.response.RootResponseDto;
+import com.unstar.backend.dto.response.RootResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -19,7 +19,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
     public void commence(HttpServletRequest request, HttpServletResponse response,
                          AuthenticationException authenticationException) throws IOException {
 
-        RootResponseDto<Object> dto = new RootResponseDto<>()
+        RootResponseDTO<Object> dto = new RootResponseDTO<>()
                 .code(HttpStatus.UNAUTHORIZED.value())
                 .errorMsg("인증이 필요합니다.")
                 .build();

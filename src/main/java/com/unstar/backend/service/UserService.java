@@ -1,17 +1,17 @@
 package com.unstar.backend.service;
 
 
-import com.unstar.backend.dto.request.SignUpRequestDto;
-import com.unstar.backend.dto.response.SignUpResponseDto;
-import com.unstar.backend.dto.response.UserResponseDto;
+import com.unstar.backend.dto.request.SignUpRequestDTO;
+import com.unstar.backend.dto.response.SignUpResponseDTO;
+import com.unstar.backend.dto.response.UserResponseDTO;
 
 public interface UserService {
 
 
 
-    public SignUpResponseDto signup(SignUpRequestDto signUpRequestDto) ;
+    public SignUpResponseDTO signup(SignUpRequestDTO signUpRequestDto) ;
 
-    public UserResponseDto getUserWithAuthorities(String username) ;
+    public UserResponseDTO getUserWithAuthorities(String username) ;
 
-    public UserResponseDto getLoginUser() ;
+    public UserResponseDTO getLoginUser() ;
 }

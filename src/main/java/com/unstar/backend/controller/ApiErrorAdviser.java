@@ -1,6 +1,6 @@
 package com.unstar.backend.controller;
 
-import com.unstar.backend.dto.response.RootResponseDto;
+import com.unstar.backend.dto.response.RootResponseDTO;
 import com.unstar.backend.exception.ForbiddenException;
 import com.unstar.backend.exception.InvalidUserNameException;
 import com.unstar.backend.exception.UnAuthorizedException;
@@ -15,24 +15,24 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ApiErrorAdviser {
 
     @ExceptionHandler(InvalidUserNameException.class)
-    public RootResponseDto<Object> invalidUserNameException(InvalidUserNameException e) {
-        return new RootResponseDto<>()
+    public RootResponseDTO<Object> invalidUserNameException(InvalidUserNameException e) {
+        return new RootResponseDTO<>()
                 .code(HttpStatus.BAD_REQUEST.value())
                 .errorMsg(e.getMessage())
                 .build();
     }
 
     @ExceptionHandler(UnAuthorizedException.class)
-    public RootResponseDto<Object> unAuthorizedException(UnAuthorizedException e) {
-        return new RootResponseDto<>()
+    public RootResponseDTO<Object> unAuthorizedException(UnAuthorizedException e) {
+        return new RootResponseDTO<>()
                 .code(HttpStatus.UNAUTHORIZED.value())
                 .errorMsg(e.getMessage())
                 .build();
     }
 
     @ExceptionHandler(ForbiddenException.class)
-    public RootResponseDto<Object> forbiddenException(ForbiddenException e) {
-        return new RootResponseDto<>()
+    public RootResponseDTO<Object> forbiddenException(ForbiddenException e) {
+        return new RootResponseDTO<>()
                 .code(HttpStatus.FORBIDDEN.value())
                 .errorMsg(e.getMessage())
                 .build();

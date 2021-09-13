@@ -1,7 +1,7 @@
 package com.unstar.backend.controller;
 
-import com.unstar.backend.dto.response.RootResponseDto;
-import com.unstar.backend.dto.response.UserResponseDto;
+import com.unstar.backend.dto.response.RootResponseDTO;
+import com.unstar.backend.dto.response.UserResponseDTO;
 import com.unstar.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +24,7 @@ public class UserController {
      */
     @GetMapping("/user/all")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public RootResponseDto<UserResponseDto> userList() {
+    public RootResponseDTO<UserResponseDTO> userList() {
         return null;
     }
 
@@ -35,9 +35,9 @@ public class UserController {
      * @return
      */
     @GetMapping("/user/{username}")
-    public RootResponseDto<UserResponseDto> userByUsername(@PathVariable String username) {
-        UserResponseDto dto = userService.getUserWithAuthorities(username);
-        return new RootResponseDto<UserResponseDto>()
+    public RootResponseDTO<UserResponseDTO> userByUsername(@PathVariable String username) {
+        UserResponseDTO dto = userService.getUserWithAuthorities(username);
+        return new RootResponseDTO<UserResponseDTO>()
                 .code(HttpStatus.OK.value())
                 .response(dto)
                 .build();
@@ -49,10 +49,10 @@ public class UserController {
      * @return
      */
     @GetMapping("/user")
-    public RootResponseDto<UserResponseDto> userInfo() {
+    public RootResponseDTO<UserResponseDTO> userInfo() {
         log.info("[/user]");
-        UserResponseDto dto = userService.getLoginUser();
-        return new RootResponseDto<UserResponseDto>()
+        UserResponseDTO dto = userService.getLoginUser();
+        return new RootResponseDTO<UserResponseDTO>()
                 .code(HttpStatus.OK.value())
                 .response(dto)
                 .build();

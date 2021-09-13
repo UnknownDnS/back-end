@@ -6,15 +6,15 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class BoardInsertResponseDto {
+public class BoardInsertResponseDTO {
     private Long id;
     private String author;
     private String title;
     private String content;
     private LocalDateTime createdAt;
 
-    public static BoardInsertResponseDto fromEntity(Board board) {
-        BoardInsertResponseDto dto = new BoardInsertResponseDto();
+    public static BoardInsertResponseDTO fromEntity(Board board) {
+        BoardInsertResponseDTO dto = new BoardInsertResponseDTO();
         dto.setAuthor(board.getAuthor());
         dto.setContent(board.getContent());
         dto.setTitle(board.getTitle());

@@ -1,11 +1,11 @@
 package com.unstar.backend.controller;
 
-import com.unstar.backend.dto.response.LoginResponseDto;
+import com.unstar.backend.dto.response.LoginResponseDTO;
 import com.unstar.backend.config.jwt.TokenProvider;
-import com.unstar.backend.dto.request.LoginRequestDto;
-import com.unstar.backend.dto.request.SignUpRequestDto;
-import com.unstar.backend.dto.response.RootResponseDto;
-import com.unstar.backend.dto.response.SignUpResponseDto;
+import com.unstar.backend.dto.request.LoginRequestDTO;
+import com.unstar.backend.dto.request.SignUpRequestDTO;
+import com.unstar.backend.dto.response.RootResponseDTO;
+import com.unstar.backend.dto.response.SignUpResponseDTO;
 import com.unstar.backend.serviceImpl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +38,7 @@ public class AuthController {
      * @return
      */
     @PostMapping("/login")
-    public RootResponseDto<LoginResponseDto> authorize(@Valid @RequestBody LoginRequestDto loginRequestDto) {
+    public RootResponseDTO<LoginResponseDTO> authorize(@Valid @RequestBody LoginRequestDTO loginRequestDto) {
         log.info("[login]");
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(loginRequestDto.getUserName(), loginRequestDto.getUserPw());
@@ -46,9 +46,9 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = tokenProvider.createToken(authentication);
-        LoginResponseDto dto = new LoginResponseDto();
+        LoginResponseDTO dto = new LoginResponseDTO();
         dto.setToken(jwt);
-        return new RootResponseDto<LoginResponseDto>()
+        return new RootResponseDTO<LoginResponseDTO>()
                 .code(HttpStatus.OK.value())
                 .response(dto)
                 .build();
@@ -61,10 +61,10 @@ public class AuthController {
      * @return
      */
     @PostMapping("/signup")
-    public RootResponseDto<SignUpResponseDto> signup(@Valid @RequestBody SignUpRequestDto signUpRequestDto) {
+    public RootResponseDTO<SignUpResponseDTO> signup(@Valid @RequestBody SignUpRequestDTO signUpRequestDto) {
         log.info("[signup]");
-        SignUpResponseDto dto = userService.signup(signUpRequestDto);
-        return new RootResponseDto<SignUpResponseDto>()
+        SignUpResponseDTO dto = userService.signup(signUpRequestDto);
+        return new RootResponseDTO<SignUpResponseDTO>()
                 .code(HttpStatus.OK.value())
                 .response(dto)
                 .build();

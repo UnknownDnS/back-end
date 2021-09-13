@@ -9,7 +9,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class RootResponseDto<T> {
+public class RootResponseDTO<T> {
 
     private Integer code;
 
@@ -21,22 +21,22 @@ public class RootResponseDto<T> {
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime timestamp;
 
-    public RootResponseDto<T> response(T response) {
+    public RootResponseDTO<T> response(T response) {
         this.response = response;
         return this;
     }
 
-    public RootResponseDto<T> code(Integer code) {
+    public RootResponseDTO<T> code(Integer code) {
         this.code = code;
         return this;
     }
 
-    public RootResponseDto<T> errorMsg(String errorMsg) {
+    public RootResponseDTO<T> errorMsg(String errorMsg) {
         this.errorMsg = errorMsg;
         return this;
     }
 
-    public RootResponseDto<T> build() {
+    public RootResponseDTO<T> build() {
         this.timestamp = LocalDateTime.now();
         return this;
     }

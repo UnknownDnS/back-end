@@ -4,10 +4,9 @@ import com.unstar.backend.domain.entity.Board;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Data
-public class BoardUpdateResponseDto {
+public class BoardUpdateResponseDTO {
     private Long id;
     private String author;
     private String title;
@@ -17,7 +16,7 @@ public class BoardUpdateResponseDto {
     private LocalDateTime updatedAt;
 
 
-    public BoardUpdateResponseDto fromEntity(Board board){
+    public BoardUpdateResponseDTO fromEntity(Board board){
         this.setId(board.getId());
         this.setAuthor(board.getAuthor());
         this.setTitle(board.getTitle());

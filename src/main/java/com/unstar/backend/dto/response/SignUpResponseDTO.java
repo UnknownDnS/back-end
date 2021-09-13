@@ -3,7 +3,7 @@ package com.unstar.backend.dto.response;
 import lombok.Data;
 
 @Data
-public class SignUpResponseDto {
+public class SignUpResponseDTO {
 
     private String userName;
 

@@ -1,14 +1,14 @@
 package com.unstar.backend.serviceImpl;
 
-import com.unstar.backend.dto.response.SignUpResponseDto;
-import com.unstar.backend.dto.response.UserResponseDto;
+import com.unstar.backend.dto.response.SignUpResponseDTO;
+import com.unstar.backend.dto.response.UserResponseDTO;
 import com.unstar.backend.service.UserService;
 import com.unstar.backend.utils.SecurityUtil;
 import com.unstar.backend.exception.ForbiddenException;
 import com.unstar.backend.exception.InvalidUserNameException;
 import com.unstar.backend.domain.entity.Authority;
 import com.unstar.backend.domain.entity.User;
-import com.unstar.backend.dto.request.SignUpRequestDto;
+import com.unstar.backend.dto.request.SignUpRequestDTO;
 import com.unstar.backend.domain.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public SignUpResponseDto signup(SignUpRequestDto signUpRequestDto) {
+    public SignUpResponseDTO signup(SignUpRequestDTO signUpRequestDto) {
         if (userRepository.findOneWithAuthoritiesByUserName(signUpRequestDto.getUserName()).orElse(null) != null) {
             throw new InvalidUserNameException("이미 가입되어 있는 유저입니다.");
         }
@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
 
         User savedUser = userRepository.save(user);
 
-        SignUpResponseDto dto = new SignUpResponseDto();
+        SignUpResponseDTO dto = new SignUpResponseDTO();
         dto.setNickName(savedUser.getNickName());
         dto.setUserName(savedUser.getUserName());
 
@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseDto getUserWithAuthorities(String username) {
+    public UserResponseDTO getUserWithAuthorities(String username) {
         User user = userRepository.findByUserName(username)
                 .orElseThrow(() -> new InvalidUserNameException("존재하지 않는 유저네임 입니다."));
 
@@ -65,14 +65,14 @@ public class UserServiceImpl implements UserService {
             throw new ForbiddenException("조회 권한이 없습니다.");
         }
 
-        return UserResponseDto.fromEntity(user);
+        return UserResponseDTO.fromEntity(user);
     }
 
     @Override
-    public UserResponseDto getLoginUser() {
+    public UserResponseDTO getLoginUser() {
         String loginUser = SecurityUtil.getCurrentUsername().get();
         User user = userRepository.findByUserName(loginUser)
                 .orElseThrow(() -> new InvalidUserNameException("존재하지 않는 유저네임 입니다."));
-        return UserResponseDto.fromEntity(user);
+        return UserResponseDTO.fromEntity(user);
     }
 }

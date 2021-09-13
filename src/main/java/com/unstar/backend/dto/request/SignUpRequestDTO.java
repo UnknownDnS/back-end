@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class SignUpRequestDto {
+public class SignUpRequestDTO {
 
     @NotNull
     @Size(min = 3, max =50)

@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-public class BoardListResponseDto {
+public class BoardListResponseDTO {
     private List<Board> boards;
     private Long id;
     private String author;

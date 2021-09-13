@@ -1,10 +1,10 @@
 package com.unstar.backend.service;
 
-import com.unstar.backend.dto.request.BoardCreateRequestDto;
-import com.unstar.backend.dto.request.BoardUpdateRequestDto;
-import com.unstar.backend.dto.response.BoardInsertResponseDto;
-import com.unstar.backend.dto.response.BoardResponseDto;
-import com.unstar.backend.dto.response.BoardUpdateResponseDto;
+import com.unstar.backend.dto.request.BoardCreateRequestDTO;
+import com.unstar.backend.dto.request.BoardUpdateRequestDTO;
+import com.unstar.backend.dto.response.BoardInsertResponseDTO;
+import com.unstar.backend.dto.response.BoardResponseDTO;
+import com.unstar.backend.dto.response.BoardUpdateResponseDTO;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,9 +14,9 @@ public interface BoardService {
 
     Optional<com.unstar.backend.domain.entity.Board> findById(Long boardId);
 
-    List<BoardResponseDto> findAll();
+    List<BoardResponseDTO> findAll();
 
-    BoardInsertResponseDto createBoard(BoardCreateRequestDto boardCreateRequestDto);
-    BoardUpdateResponseDto updateBoard(BoardUpdateRequestDto boardUpdateRequestDto);
+    BoardInsertResponseDTO createBoard(BoardCreateRequestDTO boardCreateRequestDto);
+    BoardUpdateResponseDTO updateBoard(BoardUpdateRequestDTO boardUpdateRequestDto);
     Long deleteBoard(Long boardId);
 }

@@ -8,7 +8,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class UserResponseDto {
+public class UserResponseDTO {
     private String userName;
 
     private String nickName;
@@ -16,8 +16,8 @@ public class UserResponseDto {
     @JsonFormat(pattern = JsonFormatConstant.YYYYMMDD_HHMMSS)
     private LocalDateTime createdAt;
 
-    public static UserResponseDto fromEntity(User user) {
-        UserResponseDto dto = new UserResponseDto();
+    public static UserResponseDTO fromEntity(User user) {
+        UserResponseDTO dto = new UserResponseDTO();
         dto.setNickName(user.getNickName());
         dto.setUserName(user.getUserName());
         dto.setCreatedAt(user.getCreatedAt());

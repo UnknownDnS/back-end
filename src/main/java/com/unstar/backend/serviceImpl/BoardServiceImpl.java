@@ -2,11 +2,11 @@ package com.unstar.backend.serviceImpl;
 
 import com.unstar.backend.domain.entity.Board;
 import com.unstar.backend.domain.repository.BoardRepository;
-import com.unstar.backend.dto.request.BoardCreateRequestDto;
-import com.unstar.backend.dto.request.BoardUpdateRequestDto;
-import com.unstar.backend.dto.response.BoardInsertResponseDto;
-import com.unstar.backend.dto.response.BoardResponseDto;
-import com.unstar.backend.dto.response.BoardUpdateResponseDto;
+import com.unstar.backend.dto.request.BoardCreateRequestDTO;
+import com.unstar.backend.dto.request.BoardUpdateRequestDTO;
+import com.unstar.backend.dto.response.BoardInsertResponseDTO;
+import com.unstar.backend.dto.response.BoardResponseDTO;
+import com.unstar.backend.dto.response.BoardUpdateResponseDTO;
 import com.unstar.backend.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,11 +34,11 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<BoardResponseDto> findAll() {
-        List<BoardResponseDto> dtoList = new ArrayList<>();
+    public List<BoardResponseDTO> findAll() {
+        List<BoardResponseDTO> dtoList = new ArrayList<>();
         List<Board> boardList = boardRepository.findAllCreatedAtDesc();
         for (Board board : boardList){
-            BoardResponseDto dto = new BoardResponseDto();
+            BoardResponseDTO dto = new BoardResponseDTO();
             dto.setId(board.getId());
             dto.setAuthor(board.getAuthor());
             dto.setTitle(board.getTitle());
@@ -52,21 +52,21 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public BoardInsertResponseDto createBoard(BoardCreateRequestDto boardCreateRequestDto) {
+    public BoardInsertResponseDTO createBoard(BoardCreateRequestDTO boardCreateRequestDto) {
         com.unstar.backend.domain.entity.Board board = new com.unstar.backend.domain.entity.Board();
         board.setAuthor(boardCreateRequestDto.getAuthor());
         board.setContent(boardCreateRequestDto.getContent());
         board.setTitle(boardCreateRequestDto.getTitle());
         com.unstar.backend.domain.entity.Board savedBoard = boardRepository.save(board);
-        BoardInsertResponseDto dto = BoardInsertResponseDto.fromEntity(savedBoard);
+        BoardInsertResponseDTO dto = BoardInsertResponseDTO.fromEntity(savedBoard);
         return dto;
     }
 
     @Override //null exception processing
-    public BoardUpdateResponseDto updateBoard(BoardUpdateRequestDto boardUpdateRequestDto) {
+    public BoardUpdateResponseDTO updateBoard(BoardUpdateRequestDTO boardUpdateRequestDto) {
         com.unstar.backend.domain.entity.Board board = findById(boardUpdateRequestDto.getId()).orElse(null);
         board = boardRepository.save(board);
-        return new BoardUpdateResponseDto().fromEntity(board);
+        return new BoardUpdateResponseDTO().fromEntity(board);
     }
 
     @Override //exception processing....??
