@@ -28,12 +28,14 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<CommentResponseDTO> findAllCommentsByBoardId(Integer boardId) {
         List<CommentResponseDTO> dtoList = new ArrayList<>();
-        CommentResponseDTO commentResponseDto = new CommentResponseDTO();
         List<Comment> comments = commentRepository.findAllByBoardIdAndIsEnableIsTrue(boardId);
         for (Comment comment : comments) {
+            CommentResponseDTO commentResponseDto = new CommentResponseDTO();
             commentResponseDto.setId(comment.getId());
             commentResponseDto.setContent(comment.getContent());
             commentResponseDto.setUserName(comment.getUserName());
+            commentResponseDto.setCreatedAt(comment.getCreatedAt());
+            commentResponseDto.setUpdatedAt(comment.getUpdatedAt());
             dtoList.add(commentResponseDto);
         }
         return dtoList;
@@ -54,6 +56,8 @@ public class CommentServiceImpl implements CommentService {
         commentResponseDto.setContent(savedComment.getContent());
         commentResponseDto.setId(savedComment.getId());
         commentResponseDto.setUserName(savedComment.getUserName());
+        commentResponseDto.setCreatedAt(comment.getCreatedAt());
+        commentResponseDto.setUpdatedAt(comment.getUpdatedAt());
         return commentResponseDto;
     }
 
