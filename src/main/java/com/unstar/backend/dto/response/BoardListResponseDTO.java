@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 public class BoardListResponseDTO {
     private List<Board> boards;
-    private Long id;
+    private Integer id;
     private String author;
     private String title;
     private String content;

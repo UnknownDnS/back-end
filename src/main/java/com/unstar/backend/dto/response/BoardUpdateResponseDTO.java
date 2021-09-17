@@ -7,11 +7,11 @@ import java.time.LocalDateTime;
 
 @Data
 public class BoardUpdateResponseDTO {
-    private Long id;
+    private Integer id;
     private String author;
     private String title;
     private String content;
-    private Long totalComments;
+    private Integer totalComments;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -21,7 +21,7 @@ public class BoardUpdateResponseDTO {
         this.setAuthor(board.getAuthor());
         this.setTitle(board.getTitle());
         this.setContent(board.getContent());
-        this.setTotalComments(board.getComments().stream().count());
+        this.setTotalComments(board.getComments().size());
         this.setCreatedAt(board.getCreatedAt());
         this.setUpdatedAt(board.getUpdatedAt());
         return this;

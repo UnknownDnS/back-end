@@ -53,10 +53,10 @@ public class BoardController {
     }
 
     @DeleteMapping("/board/{boardId}")
-    public RootResponseDTO<Long> deleteBoard(@PathVariable Long boardId) {
+    public RootResponseDTO<Integer> deleteBoard(@PathVariable Integer boardId) {
         log.info("[+] BoardController -> delete board by board_id:"+boardId);
-        Long deletedBoardId = boardService.deleteBoard(boardId);
-        return new RootResponseDTO<Long>()
+        Integer deletedBoardId = boardService.deleteBoard(boardId);
+        return new RootResponseDTO<Integer>()
                 .code(HttpStatus.OK.value())
                 .errorMsg(null)
                 .response(deletedBoardId)

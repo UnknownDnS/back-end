@@ -1,5 +1,6 @@
 package com.unstar.backend.service;
 
+import com.unstar.backend.domain.entity.Board;
 import com.unstar.backend.dto.request.BoardCreateRequestDTO;
 import com.unstar.backend.dto.request.BoardUpdateRequestDTO;
 import com.unstar.backend.dto.response.BoardInsertResponseDTO;
@@ -10,13 +11,13 @@ import java.util.Optional;
 
 public interface BoardService {
 
-    com.unstar.backend.domain.entity.Board save(com.unstar.backend.domain.entity.Board board);
+    Board save(Board board);
 
-    Optional<com.unstar.backend.domain.entity.Board> findById(Long boardId);
+    Optional<com.unstar.backend.domain.entity.Board> findById(Integer boardId);
 
     List<BoardResponseDTO> findAll();
 
     BoardInsertResponseDTO createBoard(BoardCreateRequestDTO boardCreateRequestDto);
     BoardUpdateResponseDTO updateBoard(BoardUpdateRequestDTO boardUpdateRequestDto);
-    Long deleteBoard(Long boardId);
+    Integer deleteBoard(Integer boardId);
 }

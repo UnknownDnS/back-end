@@ -15,7 +15,7 @@ public class Board extends CommonVO implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private Long id;              // 고유번호
+    private Integer id;              // 고유번호
 
     @Column
     private String author; //작성자

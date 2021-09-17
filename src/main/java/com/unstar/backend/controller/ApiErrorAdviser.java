@@ -2,6 +2,7 @@ package com.unstar.backend.controller;
 
 import com.unstar.backend.dto.response.RootResponseDTO;
 import com.unstar.backend.exception.ForbiddenException;
+import com.unstar.backend.exception.InvalidRequestParamException;
 import com.unstar.backend.exception.InvalidUserNameException;
 import com.unstar.backend.exception.UnAuthorizedException;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,14 @@ public class ApiErrorAdviser {
     public RootResponseDTO<Object> forbiddenException(ForbiddenException e) {
         return new RootResponseDTO<>()
                 .code(HttpStatus.FORBIDDEN.value())
+                .errorMsg(e.getMessage())
+                .build();
+    }
+
+    @ExceptionHandler(InvalidRequestParamException.class)
+    public RootResponseDTO<Object> invalidRequestParamException(InvalidRequestParamException e) {
+        return new RootResponseDTO<>()
+                .code(HttpStatus.BAD_REQUEST.value())
                 .errorMsg(e.getMessage())
                 .build();
     }

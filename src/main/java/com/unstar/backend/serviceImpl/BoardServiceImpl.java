@@ -29,7 +29,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public Optional<Board> findById(Long boardId) {
+    public Optional<Board> findById(Integer boardId) {
         return boardRepository.findById(boardId);
     }
 
@@ -70,7 +70,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override //exception processing....??
-    public Long deleteBoard(Long boardId) {
+    public Integer deleteBoard(Integer boardId) {
         try{
             if( boardRepository.findById(boardId).isPresent()) {
                 boardRepository.deleteById(boardId);

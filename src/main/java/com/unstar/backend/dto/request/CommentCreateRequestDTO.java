@@ -3,8 +3,8 @@ package com.unstar.backend.dto.request;
 import lombok.Data;
 
 @Data
-public class BoardUpdateRequestDTO {
-    private Integer id;
-    private String title;
+public class CommentCreateRequestDTO {
+    private Integer boardId;
+    private String author;
     private String content;
 }
