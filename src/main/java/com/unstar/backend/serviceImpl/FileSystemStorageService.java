@@ -1,6 +1,7 @@
 package com.unstar.backend.serviceImpl;
 
 
+import com.unstar.backend.config.StorageProperties;
 import com.unstar.backend.exception.StorageException;
 import com.unstar.backend.exception.StorageFileNotFoundException;
 import com.unstar.backend.service.StorageService;
@@ -107,23 +108,5 @@ public class FileSystemStorageService implements StorageService {
     }
 }
 
-
-@ConfigurationProperties("storage")
-class StorageProperties {
-
-    /**
-     * Folder location for storing files
-     */
-    private String location = "upload-dir";
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-}
 
 
