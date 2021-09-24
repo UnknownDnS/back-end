@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/api/file") @Slf4j
+@RestController
 public class FileController {
 
 
@@ -47,25 +48,6 @@ public class FileController {
     }
 
 
-    @GetMapping(value="/download/{filename}")
-    public RootResponseDTO<FileDownloadResponseDTO> downloadUploadedFiles(@PathVariable String filename) throws IOException {
-        log.info("[+] FileController -> download File with filename:"+ filename);
-        Resource file = storageService.loadAsResource(filename);
-
-        Resource resource = storageService.loadAsResource(filename);
-        FileDownloadResponseDTO fileDownloadResponseDTO = new FileDownloadResponseDTO();
-        fileDownloadResponseDTO.setFilename(resource.getFilename());
-        fileDownloadResponseDTO.setFile(resource.getFile());
-        fileDownloadResponseDTO.setResource(resource);
-        return new RootResponseDTO<FileDownloadResponseDTO>()
-                .code(HttpStatus.OK.value())
-                .errorMsg(null)
-                .response(fileDownloadResponseDTO)
-                .build();
-        /*return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
-                "attachment; filename=\"" + file.getFilename() + "\"").body(file);*/
-    }
-
     @PostMapping(value="/upload")
     public RootResponseDTO<FileUploadResponseDTO> uploadFile(MultipartFile file){
 
@@ -83,6 +65,33 @@ public class FileController {
                 .build();
     }
 
+    @GetMapping(value="/info/{filename}")
+    public RootResponseDTO<FileDownloadResponseDTO> getFileInfo(@PathVariable String filename) throws IOException {
+        log.info("[+] FileController -> get file information with filename:"+ filename);
+        Resource file = storageService.loadAsResource(filename);
+
+        Resource resource = storageService.loadAsResource(filename);
+        FileDownloadResponseDTO fileDownloadResponseDTO = new FileDownloadResponseDTO();
+        fileDownloadResponseDTO.setFilename(resource.getFilename());
+        fileDownloadResponseDTO.setFile(resource.getFile());
+        fileDownloadResponseDTO.setResource(resource);
+        return new RootResponseDTO<FileDownloadResponseDTO>()
+                .code(HttpStatus.OK.value())
+                .errorMsg(null)
+                .response(fileDownloadResponseDTO)
+                .build();
+        /*return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+                "attachment; filename=\"" + file.getFilename() + "\"").body(file);*/
+    }
+
+    @GetMapping("/download/{filename}")
+    @ResponseBody
+    public ResponseEntity<Resource> download(@PathVariable String filename) {
+
+        Resource file = storageService.loadAsResource(filename);
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+                "attachment; filename=\"" + file.getFilename() + "\"").body(file);
+    }//*/
 
     /* 위에게 정상작동시, 사용자별 파일 업로드 다운로드 추가 예정
     * 근데,, 인증을 jwtToken기반으로 검사후,,업로드?
