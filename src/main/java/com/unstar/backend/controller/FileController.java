@@ -84,7 +84,7 @@ public class FileController {
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);*/
     }
 
-    @GetMapping("/download/{filename}")
+    @PostMapping("/download/{filename}")
     @ResponseBody
     public ResponseEntity<Resource> download(@PathVariable String filename) {
 
