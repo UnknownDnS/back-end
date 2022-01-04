@@ -28,6 +28,7 @@ class BoardServiceImplTest {
     void save() {
         Board board = new Board();
         board.setAuthor("test");
+        board.setAuthor("test");
         Board savedBoard = boardService.save(board);
 
         assertThat(board).isEqualTo(savedBoard);
