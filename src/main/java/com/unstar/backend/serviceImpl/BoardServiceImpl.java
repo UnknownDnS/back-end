@@ -24,7 +24,7 @@ public class BoardServiceImpl implements BoardService {
     private final BoardRepository boardRepository;
 
     @Override
-    public Board save(com.unstar.backend.domain.entity.Board board) {
+    public Board save(Board board) {
         return boardRepository.save(board);
     }
 
